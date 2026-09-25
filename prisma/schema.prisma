@@ -15,3 +15,13 @@ model User {
   createdAt     DateTime  @default(now())
   projects      Project[]
 }
+model Project {
+  id             String   @id @default(cuid())
+  name           String
+  repository     String?
+  defaultBranch  String   @default("main")
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  owner          User     @relation(fields: [ownerId], references: [id])
+  ownerId        String
+}
