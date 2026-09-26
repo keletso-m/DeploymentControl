@@ -2,7 +2,7 @@
 
 **A lightweight deployment control plane for managing application deployments, environments, releases, and deployment history.**
 
-DeploymentCtrl is a cloud-based DevOps platform built with **TypeScript, Next.js, PostgreSQL, AWS, and Vercel**.
+DeploymentControl is a cloud-based DevOps platform built with **TypeScript, Next.js, PostgreSQL, AWS, and Vercel**.
 
 It provides a centralized interface for managing application deployments across different environments and deployment targets. It tracks deployment state, maintains release history, captures deployment logs, and provides the foundation for automated CI/CD workflows.
 
