@@ -1,4 +1,4 @@
-# DeploymentCtrl
+# DeploymentControl
 
 **A lightweight deployment control plane for managing application deployments, environments, releases, and deployment history.**
 
