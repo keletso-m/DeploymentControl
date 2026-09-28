@@ -3,7 +3,4 @@ import GitHub from "next-auth/providers/github";
 
 export const authConfig: NextAuthConfig = {
   providers: [GitHub],
-  pages: {
-    signIn: "/login",
-  },
 } satisfies NextAuthConfig;
