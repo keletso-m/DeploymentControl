@@ -1,11 +1,13 @@
 
 generator client {
   provider = "prisma-client"
+  previewFeatures = ["driverAdapters"]
   output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 // prisma/schema.prisma
 model User {
@@ -60,8 +62,4 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-}
-generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
 }
