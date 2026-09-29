@@ -29,7 +29,6 @@ model Project {
   createdAt      DateTime @default(now())
   owner          User     @relation(fields: [ownerId], references: [id])
   ownerId        String
-  environments   Environment[]
 }
 model Account {
   id                String  @id @default(cuid())
