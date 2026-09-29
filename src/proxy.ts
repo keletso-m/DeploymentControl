@@ -1,0 +1,11 @@
+import NextAuth from "next-auth";
+import { authConfig } from "@/lib/auth/config";
+
+export default NextAuth({
+  ...authConfig,
+  session: { strategy: "jwt" },
+}).auth;
+
+export const config = {
+  matcher: ["/dashboard/:path*", "/projects/:path*"],
+};
