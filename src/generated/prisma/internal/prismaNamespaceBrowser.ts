@@ -55,7 +55,11 @@ export const ModelName = {
   Project: 'Project',
   Account: 'Account',
   Session: 'Session',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Environment: 'Environment',
+  DeploymentTarget: 'DeploymentTarget',
+  Deployment: 'Deployment',
+  DeploymentLog: 'DeploymentLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -136,12 +140,64 @@ export const VerificationTokenScalarFieldEnum = {
 export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
 
 
+export const EnvironmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  projectId: 'projectId'
+} as const
+
+export type EnvironmentScalarFieldEnum = (typeof EnvironmentScalarFieldEnum)[keyof typeof EnvironmentScalarFieldEnum]
+
+
+export const DeploymentTargetScalarFieldEnum = {
+  id: 'id',
+  provider: 'provider',
+  config: 'config',
+  createdAt: 'createdAt',
+  environmentId: 'environmentId'
+} as const
+
+export type DeploymentTargetScalarFieldEnum = (typeof DeploymentTargetScalarFieldEnum)[keyof typeof DeploymentTargetScalarFieldEnum]
+
+
+export const DeploymentScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  commitSha: 'commitSha',
+  commitMessage: 'commitMessage',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  environmentId: 'environmentId'
+} as const
+
+export type DeploymentScalarFieldEnum = (typeof DeploymentScalarFieldEnum)[keyof typeof DeploymentScalarFieldEnum]
+
+
+export const DeploymentLogScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  timestamp: 'timestamp',
+  deploymentId: 'deploymentId'
+} as const
+
+export type DeploymentLogScalarFieldEnum = (typeof DeploymentLogScalarFieldEnum)[keyof typeof DeploymentLogScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -158,4 +214,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

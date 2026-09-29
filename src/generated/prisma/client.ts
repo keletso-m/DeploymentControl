@@ -66,3 +66,23 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model Environment
+ * 
+ */
+export type Environment = Prisma.EnvironmentModel
+/**
+ * Model DeploymentTarget
+ * 
+ */
+export type DeploymentTarget = Prisma.DeploymentTargetModel
+/**
+ * Model Deployment
+ * 
+ */
+export type Deployment = Prisma.DeploymentModel
+/**
+ * Model DeploymentLog
+ * 
+ */
+export type DeploymentLog = Prisma.DeploymentLogModel

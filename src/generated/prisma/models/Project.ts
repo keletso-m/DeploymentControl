@@ -199,6 +199,7 @@ export type ProjectWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   ownerId?: Prisma.StringFilter<"Project"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  environments?: Prisma.EnvironmentListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -210,6 +211,7 @@ export type ProjectOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
+  environments?: Prisma.EnvironmentOrderByRelationAggregateInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -224,6 +226,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   ownerId?: Prisma.StringFilter<"Project"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  environments?: Prisma.EnvironmentListRelationFilter
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -260,6 +263,7 @@ export type ProjectCreateInput = {
   status?: string
   createdAt?: Date | string
   owner: Prisma.UserCreateNestedOneWithoutProjectsInput
+  environments?: Prisma.EnvironmentCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -270,6 +274,7 @@ export type ProjectUncheckedCreateInput = {
   status?: string
   createdAt?: Date | string
   ownerId: string
+  environments?: Prisma.EnvironmentUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -280,6 +285,7 @@ export type ProjectUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
+  environments?: Prisma.EnvironmentUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -290,6 +296,7 @@ export type ProjectUncheckedUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  environments?: Prisma.EnvironmentUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -361,6 +368,11 @@ export type ProjectMinOrderByAggregateInput = {
   ownerId?: Prisma.SortOrder
 }
 
+export type ProjectScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput
+  isNot?: Prisma.ProjectWhereInput
+}
+
 export type ProjectCreateNestedManyWithoutOwnerInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutOwnerInput, Prisma.ProjectUncheckedCreateWithoutOwnerInput> | Prisma.ProjectCreateWithoutOwnerInput[] | Prisma.ProjectUncheckedCreateWithoutOwnerInput[]
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOwnerInput | Prisma.ProjectCreateOrConnectWithoutOwnerInput[]
@@ -403,6 +415,20 @@ export type ProjectUncheckedUpdateManyWithoutOwnerNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
+export type ProjectCreateNestedOneWithoutEnvironmentsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEnvironmentsInput, Prisma.ProjectUncheckedCreateWithoutEnvironmentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEnvironmentsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutEnvironmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEnvironmentsInput, Prisma.ProjectUncheckedCreateWithoutEnvironmentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEnvironmentsInput
+  upsert?: Prisma.ProjectUpsertWithoutEnvironmentsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutEnvironmentsInput, Prisma.ProjectUpdateWithoutEnvironmentsInput>, Prisma.ProjectUncheckedUpdateWithoutEnvironmentsInput>
+}
+
 export type ProjectCreateWithoutOwnerInput = {
   id?: string
   name: string
@@ -410,6 +436,7 @@ export type ProjectCreateWithoutOwnerInput = {
   defaultBranch?: string
   status?: string
   createdAt?: Date | string
+  environments?: Prisma.EnvironmentCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutOwnerInput = {
@@ -419,6 +446,7 @@ export type ProjectUncheckedCreateWithoutOwnerInput = {
   defaultBranch?: string
   status?: string
   createdAt?: Date | string
+  environments?: Prisma.EnvironmentUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOwnerInput = {
@@ -460,6 +488,62 @@ export type ProjectScalarWhereInput = {
   ownerId?: Prisma.StringFilter<"Project"> | string
 }
 
+export type ProjectCreateWithoutEnvironmentsInput = {
+  id?: string
+  name: string
+  repository?: string | null
+  defaultBranch?: string
+  status?: string
+  createdAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutEnvironmentsInput = {
+  id?: string
+  name: string
+  repository?: string | null
+  defaultBranch?: string
+  status?: string
+  createdAt?: Date | string
+  ownerId: string
+}
+
+export type ProjectCreateOrConnectWithoutEnvironmentsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEnvironmentsInput, Prisma.ProjectUncheckedCreateWithoutEnvironmentsInput>
+}
+
+export type ProjectUpsertWithoutEnvironmentsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutEnvironmentsInput, Prisma.ProjectUncheckedUpdateWithoutEnvironmentsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEnvironmentsInput, Prisma.ProjectUncheckedCreateWithoutEnvironmentsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutEnvironmentsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutEnvironmentsInput, Prisma.ProjectUncheckedUpdateWithoutEnvironmentsInput>
+}
+
+export type ProjectUpdateWithoutEnvironmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  repository?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  defaultBranch?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutEnvironmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  repository?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  defaultBranch?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
 export type ProjectCreateManyOwnerInput = {
   id?: string
   name: string
@@ -476,6 +560,7 @@ export type ProjectUpdateWithoutOwnerInput = {
   defaultBranch?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  environments?: Prisma.EnvironmentUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutOwnerInput = {
@@ -485,6 +570,7 @@ export type ProjectUncheckedUpdateWithoutOwnerInput = {
   defaultBranch?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  environments?: Prisma.EnvironmentUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutOwnerInput = {
@@ -497,6 +583,35 @@ export type ProjectUncheckedUpdateManyWithoutOwnerInput = {
 }
 
 
+/**
+ * Count Type ProjectCountOutputType
+ */
+
+export type ProjectCountOutputType = {
+  environments: number
+}
+
+export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  environments?: boolean | ProjectCountOutputTypeCountEnvironmentsArgs
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectCountOutputType
+   */
+  select?: Prisma.ProjectCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountEnvironmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EnvironmentWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -507,6 +622,8 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  environments?: boolean | Prisma.Project$environmentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -544,6 +661,8 @@ export type ProjectSelectScalar = {
 export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "repository" | "defaultBranch" | "status" | "createdAt" | "ownerId", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  environments?: boolean | Prisma.Project$environmentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -556,6 +675,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Project"
   objects: {
     owner: Prisma.$UserPayload<ExtArgs>
+    environments: Prisma.$EnvironmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -960,6 +1080,7 @@ readonly fields: ProjectFieldRefs;
 export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  environments<T extends Prisma.Project$environmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$environmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnvironmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1394,6 +1515,30 @@ export type ProjectDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Projects to delete.
    */
   limit?: number
+}
+
+/**
+ * Project.environments
+ */
+export type Project$environmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Environment
+   */
+  select?: Prisma.EnvironmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Environment
+   */
+  omit?: Prisma.EnvironmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnvironmentInclude<ExtArgs> | null
+  where?: Prisma.EnvironmentWhereInput
+  orderBy?: Prisma.EnvironmentOrderByWithRelationInput | Prisma.EnvironmentOrderByWithRelationInput[]
+  cursor?: Prisma.EnvironmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EnvironmentScalarFieldEnum | Prisma.EnvironmentScalarFieldEnum[]
 }
 
 /**
