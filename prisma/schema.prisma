@@ -7,7 +7,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 // prisma/schema.prisma
 model User {
@@ -27,7 +26,6 @@ model Project {
   repository     String?
   defaultBranch  String   @default("main")
   status         String   @default("ACTIVE")
-  environments   Environment[]
   createdAt      DateTime @default(now())
   owner          User     @relation(fields: [ownerId], references: [id])
   ownerId        String
