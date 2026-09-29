@@ -795,7 +795,7 @@ The architecture intentionally keeps local development simple while allowing pro
 
 ## Phase 2 — Deployment Model
 
-* [ ] Environment model
+* [x] Environment model
 * [ ] Deployment model
 * [ ] Deployment targets
 * [ ] Deployment states
